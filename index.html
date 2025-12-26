@@ -3,108 +3,174 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A Story for You</title>
+    <title>For Avinya 💌</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Indie+Flower&family=Caveat:wght@700&family=Pacifico&family=Quicksand:wght@500&family=Great+Vibes&display=swap" rel="stylesheet">
+    
     <style>
         :root {
-            --bg: #fff0f5; /* Lavender Blush */
-            --text: #db7093; /* Pale Violet Red */
-            --accent: #ff69b4;
+            --bg: #fff5f7;
+            --text: #8b4356;
+            --font-main: 'Indie Flower', cursive;
         }
 
         body {
             background-color: var(--bg);
             color: var(--text);
-            font-family: 'Courier New', Courier, monospace; /* Romantic/Journal style */
+            font-family: var(--font-main);
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
-            transition: all 1.2s ease-in-out;
+            transition: all 1.5s ease-in-out;
             overflow: hidden;
             text-align: center;
         }
 
-        .container {
-            max-width: 600px;
-            padding: 20px;
+        /* Floating Nature Elements */
+        .nature {
+            position: absolute;
+            user-select: none;
+            pointer-events: none;
+            z-index: 1;
+            animation: floatAround 10s infinite linear;
+            opacity: 0.6;
         }
 
-        h1 { font-size: 2rem; margin-bottom: 20px; }
-        p { font-size: 1.2rem; line-height: 1.6; }
+        @keyframes floatAround {
+            0% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-100px) rotate(180deg); }
+            100% { transform: translateY(0) rotate(360deg); }
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(5px);
+            padding: 40px;
+            border-radius: 20px;
+            border: 2px dashed #ffb6c1;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            max-width: 85%;
+            z-index: 10;
+            transition: transform 0.5s;
+        }
+
+        h1 { font-size: 2.5rem; margin-bottom: 10px; transition: 0.5s; }
+        p { font-size: 1.3rem; line-height: 1.5; }
 
         .btn {
-            margin-top: 30px;
-            padding: 12px 25px;
-            border: 2px solid var(--text);
-            background: transparent;
-            color: var(--text);
-            cursor: pointer;
-            border-radius: 50px;
-            font-weight: bold;
-            transition: 0.3s;
-        }
-
-        .btn:hover {
             background: var(--text);
             color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-family: inherit;
+            cursor: pointer;
+            font-size: 1.1rem;
+            margin-top: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
 
-        /* Final Dark Layer */
-        .dark-reveal {
-            background-color: #0a0a0a !important;
+        /* Dark Mode Reveal */
+        body.dark-mode {
+            background-color: #0d0d0d !important;
             color: #ffffff !important;
+        }
+        .dark-mode .container {
+            background: rgba(20, 20, 20, 0.9);
+            border: 1px solid #444;
         }
     </style>
 </head>
 <body id="body">
 
-    <div class="container">
-        <h1 id="headline">Hi there... 🌸</h1>
-        <p id="subtext">I made this little space just for you. Want to see more?</p>
-        <button class="btn" id="nextBtn" onclick="nextLayer()">Yes, go on</button>
+    <div class="nature" style="top:10%; left:10%; font-size: 2rem;">🌸</div>
+    <div class="nature" style="top:70%; left:20%; font-size: 3rem;">🌿</div>
+    <div class="nature" style="top:20%; right:15%; font-size: 2.5rem;">🌷</div>
+    <div class="nature" style="bottom:10%; right:10%; font-size: 2rem;">🍃</div>
+
+    <div class="container" id="card">
+        <h1 id="title">Hi Avinya... 💌</h1>
+        <p id="msg">You've got a letter. It's been waiting for you.</p>
+        <button class="btn" onclick="nextStep()">Open it</button>
     </div>
 
     <script>
-        let currentLayer = 1;
-
-        const layers = [
-            { bg: "#fff0f5", text: "#db7093", head: "It starts with a spark...", sub: "Just like the first time we talked." },
-            { bg: "#ffb6c1", text: "#c71585", head: "Then it gets brighter ✨", sub: "Because your energy is honestly contagious." },
-            { bg: "#ff69b4", text: "#ffffff", head: "Soft & Sweet", sub: "I wanted this to feel as warm as your smile." },
-            { bg: "#db7093", text: "#fff0f5", head: "Almost there...", sub: "There's something I've been meaning to show you." },
-            { bg: "#1a1a1a", text: "#f8f8f8", head: "Finally, the truth.", sub: "In a world full of noise and light..." }
+        let step = 0;
+        const data = [
+            {
+                title: "A Little Spark ✨",
+                msg: "Just like a small seed in a garden, things started simple...",
+                font: "'Indie Flower', cursive",
+                bg: "#fff5f7",
+                color: "#8b4356"
+            },
+            {
+                title: "Blooming 🌷",
+                msg: "But then you smiled, and everything started to grow beautifully.",
+                font: "'Pacifico', cursive",
+                bg: "#ffe4e1",
+                color: "#d02090"
+            },
+            {
+                title: "Under the Trees 🌳",
+                msg: "I find peace whenever I think of you. You're my favorite view.",
+                font: "'Caveat', cursive",
+                bg: "#f0fff0",
+                color: "#2e8b57"
+            },
+            {
+                title: "Elegant Moments 🕊️",
+                msg: "There's a grace in how you are. I hope this makes you smile today.",
+                font: "'Great Vibes', cursive",
+                bg: "#fdf5e6",
+                color: "#a0522d"
+            },
+            {
+                title: "Pure Magic ✨",
+                msg: "You're the kind of person who makes the world feel like a dream.",
+                font: "'Quicksand', sans-serif",
+                bg: "#e6e6fa",
+                color: "#4b0082"
+            },
+            {
+                title: "By the one who sent this.",
+                msg: "In the quietest moments, it's always been me thinking of you... <br><br><b>— [Abhimanyu]</b>",
+                font: "'Dancing Script', cursive",
+                bg: "#0d0d0d",
+                color: "#ffffff",
+                isDark: true
+            }
         ];
 
-        function nextLayer() {
+        function nextStep() {
+            const card = document.getElementById('card');
+            const title = document.getElementById('title');
+            const msg = document.getElementById('msg');
             const body = document.getElementById('body');
-            const head = document.getElementById('headline');
-            const sub = document.getElementById('subtext');
-            const btn = document.getElementById('nextBtn');
+            const btn = document.querySelector('.btn');
 
-            if (currentLayer <= layers.length) {
-                const data = layers[currentLayer - 1];
-                body.style.backgroundColor = data.bg;
-                body.style.color = data.text;
-                head.innerText = data.head;
-                sub.innerText = data.sub;
-                
-                // Update button color to match theme
-                btn.style.borderColor = data.text;
-                btn.style.color = data.text;
+            // Animation effect
+            card.style.transform = "scale(0.9) opacity(0)";
+            
+            setTimeout(() => {
+                const current = data[step];
+                title.innerText = current.title;
+                msg.innerHTML = current.msg;
+                body.style.fontFamily = current.font;
+                body.style.backgroundColor = current.bg;
+                body.style.color = current.color;
+                btn.style.backgroundColor = current.color;
 
-                if (currentLayer === layers.length) {
-                    btn.innerText = "The Final Reveal";
+                if(current.isDark) {
+                    body.classList.add('dark-mode');
+                    btn.style.display = 'none';
                 }
-                currentLayer++;
-            } else {
-                // The Final Reveal (By Dark / The Sender)
-                body.classList.add('dark-reveal');
-                head.innerHTML = "It’s always been me.";
-                sub.innerHTML = "Behind all the pink and the brightness... <br><br><b>[Abhimanyu]</b><br><br>is the one who's always thinking of you.";
-                btn.style.display = "none";
-            }
+
+                card.style.transform = "scale(1) opacity(1)";
+                step++;
+            }, 500);
         }
     </script>
 </body>
-</hthththtNNAAM
+</hthtNAMNNAAM
