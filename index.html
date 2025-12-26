@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Story for You</title>
+    <style>
+        :root {
+            --bg: #fff0f5; /* Lavender Blush */
+            --text: #db7093; /* Pale Violet Red */
+            --accent: #ff69b4;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Courier New', Courier, monospace; /* Romantic/Journal style */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            transition: all 1.2s ease-in-out;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 600px;
+            padding: 20px;
+        }
+
+        h1 { font-size: 2rem; margin-bottom: 20px; }
+        p { font-size: 1.2rem; line-height: 1.6; }
+
+        .btn {
+            margin-top: 30px;
+            padding: 12px 25px;
+            border: 2px solid var(--text);
+            background: transparent;
+            color: var(--text);
+            cursor: pointer;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: var(--text);
+            color: white;
+        }
+
+        /* Final Dark Layer */
+        .dark-reveal {
+            background-color: #0a0a0a !important;
+            color: #ffffff !important;
+        }
+    </style>
+</head>
+<body id="body">
+
+    <div class="container">
+        <h1 id="headline">Hi there... 🌸</h1>
+        <p id="subtext">I made this little space just for you. Want to see more?</p>
+        <button class="btn" id="nextBtn" onclick="nextLayer()">Yes, go on</button>
+    </div>
+
+    <script>
+        let currentLayer = 1;
+
+        const layers = [
+            { bg: "#fff0f5", text: "#db7093", head: "It starts with a spark...", sub: "Just like the first time we talked." },
+            { bg: "#ffb6c1", text: "#c71585", head: "Then it gets brighter ✨", sub: "Because your energy is honestly contagious." },
+            { bg: "#ff69b4", text: "#ffffff", head: "Soft & Sweet", sub: "I wanted this to feel as warm as your smile." },
+            { bg: "#db7093", text: "#fff0f5", head: "Almost there...", sub: "There's something I've been meaning to show you." },
+            { bg: "#1a1a1a", text: "#f8f8f8", head: "Finally, the truth.", sub: "In a world full of noise and light..." }
+        ];
+
+        function nextLayer() {
+            const body = document.getElementById('body');
+            const head = document.getElementById('headline');
+            const sub = document.getElementById('subtext');
+            const btn = document.getElementById('nextBtn');
+
+            if (currentLayer <= layers.length) {
+                const data = layers[currentLayer - 1];
+                body.style.backgroundColor = data.bg;
+                body.style.color = data.text;
+                head.innerText = data.head;
+                sub.innerText = data.sub;
+                
+                // Update button color to match theme
+                btn.style.borderColor = data.text;
+                btn.style.color = data.text;
+
+                if (currentLayer === layers.length) {
+                    btn.innerText = "The Final Reveal";
+                }
+                currentLayer++;
+            } else {
+                // The Final Reveal (By Dark / The Sender)
+                body.classList.add('dark-reveal');
+                head.innerHTML = "It’s always been me.";
+                sub.innerHTML = "Behind all the pink and the brightness... <br><br><b>[Abhimanyu]</b><br><br>is the one who's always thinking of you.";
+                btn.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</hthththtNNAAM
